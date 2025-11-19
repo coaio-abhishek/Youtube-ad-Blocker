@@ -1,53 +1,41 @@
 // ==UserScript==
-// @name         Remove YouTube Ads (Improved with Popup Removal)
-// @require      https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js  // Updated to a more recent version of jQuery
+// @name         YouTube Cosmetic Ad Remover (Efficient)
 // @namespace    http://tampermonkey.net/
-// @version      1.1
-// @description  Removes specific YouTube ads, including popups and overlays.
-// @author       [MR-Braadworst]
+// @version      2.1
+// @description  Hide YouTube ad UI, overlays, and promoted items; auto-click skip when available
+// @author       abhishek-shah
 // @match        https://www.youtube.com/*
 // @grant        none
 // ==/UserScript==
 
 (function() {
-    'use strict';
+  'use strict';
 
-    console.log("YouTube Ad Blocker Initialized!");
+  const selectors = [
+    "#player-ads",
+    "#masthead-ad",
+    "#offer-module",
+    ".video-ads",
+    "#pyv-watch-related-dest-url",
+    "ytd-promoted-video-renderer",
+    "ytd-display-ad-renderer",
+    ".ytp-ad-overlay-container",
+    ".ytp-ad-player-overlay"
+  ];
 
-    // Function to remove ads
-    function removeAds() {
-        try {
-            // Remove specific ad elements
-            $("#player-ads").remove(); // Ads in the video player
-            $("#masthead-ad").remove(); // Ads in the header
-            $("#offer-module").remove(); // Offer modules
-            $(".video-ads").remove(); // Video ads
-            $("#pyv-watch-related-dest-url").remove(); // Sponsored links
-            $("ytd-promoted-video-renderer").remove(); // Promoted videos in recommendations
-            $("ytd-display-ad-renderer").remove(); // Display ads on the page
-            $(".ytp-ad-overlay-container").remove(); // Overlay ads in the video player
-            $(".ytp-ad-player-overlay").remove(); // Popup overlay ads
-        } catch (error) {
-            console.error("Error while removing ads:", error);
-        }
+  function cleanAds() {
+    for (const sel of selectors) {
+      document.querySelectorAll(sel).forEach(el => el.remove());
     }
+    const skip = document.querySelector(".ytp-ad-skip-button, .ytp-ad-skip-button-modern");
+    if (skip) skip.click();
+  }
 
-    // Check if a video ad is playing
-    function removeVideoAd() {
-        try {
-            if ($(".videoAdUiRedesign")[0]) {
-                console.log("Video ad detected. Skipping...");
-                $(".video-stream").prop("src", ""); // Stop the video ad
-            }
-        } catch (error) {
-            console.error("Error while stopping a video ad:", error);
-        }
-    }
+  cleanAds();
 
-    // Repeatedly check for and remove ads and video ads
-    setInterval(() => {
-        removeAds();
-        removeVideoAd();
-    }, 1000);
+  const obs = new MutationObserver(() => cleanAds());
+  obs.observe(document.documentElement || document.body, { childList: true, subtree: true });
 
+  document.addEventListener('yt-navigate-finish', cleanAds);
+  document.addEventListener('yt-page-data-updated', cleanAds);
 })();

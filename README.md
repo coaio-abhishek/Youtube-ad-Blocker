@@ -1,7 +1,8 @@
-# YouTube Cosmetic Ad Remover (Tampermonkey)
+# YouTube Cosmetic Ad Remover -------------Tampermonkey-----------
 
 ## 📖 Description
-This userscript cleans up YouTube’s interface by removing overlays, banners, and promoted content. It also auto-clicks the skip button when available. Unlike older versions that relied on `setInterval` and jQuery, this version uses **MutationObserver** for instant reaction and lower CPU usage.
+This script makes YouTube cleaner by removing ads like overlays, banners, and promoted videos. It also clicks the skip button for you when it shows up. Instead of using timers and jQuery, it now uses MutationObserver, which reacts faster and uses less power.
+
 
 ## ✨ Features
 - **Cosmetic Ad Removal**: Removes overlays, banners, header ads, and promoted videos.  

@@ -21,8 +21,9 @@ If the extension is working correctly, it should look like this: -----alt:-I hav
  
 
 <p align="center">
-  <img src="images/Screenshot-2025-11-19-182240.png" alt="YouTube Ad Nuker img for supposed purpose from your browser" width="600">
+  <img src="Screenshot%202025-11-19%20182240.png" alt="YouTube Ad Nuker img for supposed purpose from your browser" width="600">
 </p>
+
 
 You should see:
 - No overlays, banners, or promoted video blocks. (i.e would say a clear videos)

@@ -1,36 +1,75 @@
-# YouTube Cosmetic Ad Remover -------------Tampermonkey-----------
+# YouTube Ad Nuker  
+---with Tampermonkey---
 
-## 📖 Description
-This script makes YouTube cleaner by removing ads like overlays, banners, and promoted videos. It also clicks the skip button for you when it shows up. Instead of using timers and jQuery, it now uses MutationObserver, which reacts faster and uses less power.
+## 📖 What This Script Does in (irt)
+This script removes cosmetic ads from YouTube and auto-clicks the “Skip Ad” button the moment it appears. It uses a MutationObserver for real-time DOM cleanup and runs at `document-start` for early interception. No jQuery, no timers — just fast, stealthy ad nuking.
 
+---
 
 ## ✨ Features
-- **Cosmetic Ad Removal**: Removes overlays, banners, header ads, and promoted videos.  
-- **Auto-Skip**: Automatically clicks the skip ad button when it appears.  
-- **Efficient Execution**: Uses MutationObserver to react instantly to YouTube’s dynamic DOM changes.  
-- **SPA Support**: Hooks into YouTube’s navigation events so cleanup works even when switching videos without page reload.  
+-  Cosmetic Ad Removal: overlays, banners, promoted videos, and header ads.
+- ⏩ Auto-Skip: clicks the “Skip Ad” button instantly.
+-  Efficient Execution: MutationObserver + interval fallback.
+-  Early Interception: runs before YouTube fully loads.
+- 🔄 SPA Support: works across YouTube’s single-page navigation.
 
-## 🚀 Installation
-1. Install the **Tampermonkey** extension for your browser: [Tampermonkey.net](https://www.tampermonkey.net/).  
-2. Open Tampermonkey → **Create a new script**.  
-3. Paste the code from `youtube-ad-remover.user.js`.  
-4. Save and enable the script.  
-5. Refresh YouTube — overlays and promoted items should disappear, skip button should auto-click.
+---
+
+## 🖼️ Expected Behavior from the browser while eye on bars of extention attached....
+
+If the extension is working correctly, it should look like this: -----alt:-I have attached uBlock Origin for network level ad blocking and to bypass YouTube’s anti-adblock detection.
+ 
+
+<p align="center">
+  <img src="images/Screenshot-2025-11-19-182240.png" alt="YouTube Ad Nuker img for supposed purpose from your browser" width="600">
+</p>
+
+You should see:
+- No overlays, banners, or promoted video blocks. (i.e would say a clear videos)
+- “Skip Ad” button auto-clicked without user input. (i'm working on it)
+- Clean interface with no cosmetic ad clutter. (-snipped- all unwanted vague of such generic shitgraph banner.)
+- Consistent behavior even when switching videos.
+
+---
+
+## 🚀 How to Install
+1. Install [Tampermonkey](https://www.tampermonkey.net) in your browser.
+2. Open Tampermonkey → Create a new script.
+3. Paste in the code from `youtube-ad-nuker.user.js`.
+4. Save and enable the script.
+5. Refresh YouTube — ads should vanish, skip buttons should auto-click.
+
+---
 
 ## ⚙️ How It Works
-- Targets known ad-related elements in YouTube’s DOM and removes them.  
-- Watches for new elements using MutationObserver.  
-- Auto-clicks skip button when present.  
-- Listens to YouTube’s single-page app navigation events to keep cleaning even when switching videos.  
+- MutationObserver watches for ad elements and removes them instantly.
+- Interval fallback runs every second to catch stubborn leftovers.
+- Script executes at `document-start` for early ad interception.
+- Handles YouTube’s dynamic page loads (no reload needed).
 
-## ⚠️ Limitations
-- Does **not** block unskippable video ads (they are part of the video stream).  
-- Does **not** block ad requests at the network level.  
-- For complete ad blocking, pair with **uBlock Origin** or DNS-level blockers.  
+---
 
-## 🛠️ Recommended Pairing
-- **uBlock Origin**: Enable EasyList, AdGuard Base, uBlock filters, and Annoyances.  
-- **SponsorBlock**: Skip in-video sponsorship segments automatically.  
+## 🛠️ Recommended Pairing for smooth.....
+- **uBlock Origin**: Enable EasyList, AdGuard Base, and uBlock filters.
+
+---
+
+## 🧪 Troubleshooting
+If ads still appear:
+- Make sure Tampermonkey is enabled. (check once if it is wworking or not for your youtube on the browser)
+- Confirm the script is running on `youtube.com`. (same as above, mentioned earlier.....)
+- Pair with uBlock Origin for network-level blocking. (I highly recommend it....)
+- Reload the page or restart the browser.
+
+---
 
 ## 💬 Support
-If you encounter issues or want to suggest improvements, open an **Issue** in this repository.
+Pull requests are welcome!  
+For major changes, open an issue first to discuss what you’d like to improve.  
+
+---
+
+## 📜 License
+This project is licensed under the MIT License.  
+
+---
